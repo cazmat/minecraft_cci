@@ -1,0 +1,71 @@
+{
+  "conditions": {},
+  "outcomes": {},
+  "events": {
+    "[RandomMob] Summon Random Mob": {
+      "conditions": [
+        {
+          "condition": {
+            "variableName": "user",
+            "type": "variableExists"
+          },
+          "passCondition": {
+            "type": "null"
+          },
+          "failCondition": {
+            "variableName": "user",
+            "variableInput": "$redemption_user_display_name",
+            "type": "variableInsert"
+          },
+          "type": "conditional"
+        },
+        {
+          "values": [
+            "minecraft:wolf"
+          ],
+          "variableName": "randomMob",
+          "type": "randomString"
+        },
+        {
+          "condition": {
+            "source": "$randomMob",
+            "target": "minecraft:wolf",
+            "type": "stringEquals"
+          },
+          "passCondition": {
+            "values": [
+              ",CollarColor:0,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:1,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:2,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:3,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:4,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:5,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:6,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:7,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:8,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:9,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:10,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:11,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:12,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:13,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:14,Owner:\"\\\"$user\\\"\"",
+              ",CollarColor:15,Owner:\"\\\"$user\\\"\""
+            ],
+            "variableName": "extraNBT",
+            "type": "randomString"
+          },
+          "failCondition": {
+            "type": "null"
+          },
+          "type": "conditional"
+        }
+      ],
+      "outcomes": [
+        {
+          "command": "/summon $randomMob ~ ~ ~ {PersistanceRequired:1,CustomName:\"\\\"$user\\\"\"$extraNBT}",
+          "type": "command"
+        }
+      ]
+    }
+  }
+}
